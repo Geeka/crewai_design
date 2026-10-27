@@ -1,0 +1,14 @@
+ROHIT VERMA
+Mumbai | candidate@example.com | +91 90000 00000
+
+SUMMARY
+Financial Analyst with 2 years of experience in budgeting and forecasting.
+
+SKILLS
+Excel (financial modeling), FP&A, variance analysis, SQL, Power BI
+
+EXPERIENCE
+Financial Analyst, Meridian Capital, 2 years: prepared monthly forecasts for 3 business units; built a variance model; supported the annual budget of 40 crore.
+
+EDUCATION
+B.Com, 2022; CFA Level 1 passed

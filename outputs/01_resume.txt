@@ -1,0 +1,14 @@
+KAVYA NAIR
+Bangalore | candidate@example.com | +91 90000 00000
+
+SUMMARY
+Entry-level Data Analyst with 8 months of internship experience in reporting and dashboards.
+
+SKILLS
+SQL, Excel (pivot tables, VLOOKUP), Tableau, Python (Pandas), basic statistics
+
+EXPERIENCE
+Data Analyst Intern, RetailNest, 8 months: wrote SQL reports on weekly sales; built a Tableau dashboard used by the store team; cleaned 50,000 rows of order data.
+
+EDUCATION
+B.Sc Statistics, 2024

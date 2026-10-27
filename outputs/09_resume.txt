@@ -1,0 +1,14 @@
+DIVYA REDDY
+Bangalore | candidate@example.com | +91 90000 00000
+
+SUMMARY
+Associate Product Manager with 3 years of experience in consumer apps.
+
+SKILLS
+Product roadmaps, user research, SQL, Mixpanel, Jira, A/B testing, stakeholder management
+
+EXPERIENCE
+Associate Product Manager, ShopEasy, 3 years: launched a wishlist feature used by 15% of users; wrote requirements for 4 releases; analysed funnel drop-off with SQL.
+
+EDUCATION
+B.Tech Electronics, 2020; PGDM, 2022

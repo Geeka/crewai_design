@@ -1,0 +1,14 @@
+VIKRAM SINGH
+Bangalore | candidate@example.com | +91 90000 00000
+
+SUMMARY
+Backend Software Engineer with 4 years of experience building REST services.
+
+SKILLS
+Java, Spring Boot, PostgreSQL, AWS, Docker, Kafka, REST APIs
+
+EXPERIENCE
+Software Engineer, CloudKart, 4 years: built payment and order services handling 20,000 requests per hour; migrated a monolith to 5 microservices; led a team of 3.
+
+EDUCATION
+B.Tech Information Technology, 2020

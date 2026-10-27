@@ -1,0 +1,14 @@
+ANANYA DAS
+Chennai | candidate@example.com | +91 90000 00000
+
+SUMMARY
+Frontend Developer with 2 years of experience building web applications.
+
+SKILLS
+React, TypeScript, JavaScript, HTML, CSS, Redux, Jest
+
+EXPERIENCE
+Frontend Developer, PixelWorks, 2 years: built a React dashboard for 10,000 users; improved page load time by 35%; wrote unit tests for core components.
+
+EDUCATION
+B.Sc Computer Science, 2022

@@ -1,0 +1,14 @@
+IMRAN SHAIKH
+Chennai | candidate@example.com | +91 90000 00000
+
+SUMMARY
+Supply Chain Analyst with 2 years of experience in inventory and logistics planning.
+
+SKILLS
+SAP, Excel, inventory planning, demand forecasting, SQL, Power BI
+
+EXPERIENCE
+Supply Chain Analyst, Ravi Logistics, 2 years: tracked stock levels for 800 SKUs; cut stockouts by 12%; produced weekly delivery performance reports.
+
+EDUCATION
+B.E. Mechanical Engineering, 2022

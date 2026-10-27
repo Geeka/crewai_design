@@ -1,0 +1,14 @@
+ARJUN RAO
+Hyderabad | candidate@example.com | +91 90000 00000
+
+SUMMARY
+Business Intelligence Analyst with 3 years of experience in reporting and KPI dashboards.
+
+SKILLS
+SQL, Power BI, DAX, Excel, Python, data modeling
+
+EXPERIENCE
+BI Analyst, FinServe Analytics, 3 years: built Power BI dashboards for 4 business teams; automated monthly reports; reduced report preparation from 2 days to 3 hours.
+
+EDUCATION
+B.E. Computer Science, 2021
