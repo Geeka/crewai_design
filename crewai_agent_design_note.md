@@ -6,7 +6,7 @@
 
 A job seeker has to read a resume, work out what to search for, scan postings, and decide which one fits. The system automates that sequence: it reads a resume, derives a search query, retrieves current postings from a job-search API, selects the most relevant one with a reason, and emails the result.
 
-**Use case.** Individual job seekers, and career-services or placement teams that must match many candidates to live roles. Searching boards by hand is slow, and many results are staffing-agency or generic adverts. The agent turns a resume into a targeted query, retrieves current postings, and returns one recommended match with a reason. The testing below found exactly this noise (staffing-agency picks), and time saved was not measured.
+**Use case.** Individual job seekers, and career-services or placement teams that must match many candidates to live roles. Searching boards by hand is slow, and many results are staffing-agency or generic adverts. The agent turns a resume into a targeted query, retrieves current postings, and returns one recommended match with a reason. The evaluation in section 7 found the same noise in several picks, and time saved was not measured.
 
 ## 2. Requirements
 
@@ -46,37 +46,32 @@ Both tools were designed to be clear, accurate about their side effects (none), 
 
 ## 5. Orchestration decision
 
-Two process designs were run on the same task, once for each of 10 resumes (20 runs).
+Two process designs were run on the same task.
 
 | | Sequential | Hierarchical |
 |---|---|---|
 | Flow | Fixed order: analyze the resume, then search | A manager agent (`jobs_manager`) with `allow_delegation=True` |
-| Good matches (manual score of 4 or more out of 5) | 8 of 10 | 5 of 10 |
-| Average score | 4.0 | 3.6 |
-| Search calls per run | 1.4 on average (1 to 3) | 1.9 on average (1 to 5) |
-| Delegation | Not applicable | The manager delegated in 2 of 10 runs |
+| Good-match rate | 8 of 10 | 5 of 10 |
 
-**Delivered configuration: sequential.** The task is a linear pipeline with no routing decision, so a fixed order is predictable and easy to reproduce. In this test it also produced more good matches. The hierarchical manager delegated in only 2 of 10 runs, so the extra layer added searches without adding routing.
+**Delivered configuration: sequential.** The task is a linear pipeline with no routing decision, so a fixed order is predictable and easy to reproduce, and it produced more good matches. The hierarchical manager delegated in only 2 of 10 runs, so the extra layer added no routing.
 
 ## 6. Observability
 
-Tool calls are captured through CrewAI's native tool-usage events and written to `agents_outputs.json` with the tool name, parsed arguments, and agent role. This made the hallucinated tool name and the call counts above visible.
+Tool calls are captured through CrewAI's native tool-usage events and written to `agents_outputs.json` with the tool name, parsed arguments, and agent role. This made every run's tool calls and any delegation visible.
 
-## 7. Testing and evaluation
+## 7. Evaluation
 
-Ten synthetic resumes were used: entry-level data analyst, BI analyst, digital marketing analyst, backend engineer, frontend developer, financial analyst, HR recruiter, supply chain analyst, associate product manager and junior data scientist. Both crews ran on each, giving 20 runs.
+One metric: the **good-match rate**. Ten synthetic resumes were run through both crews (20 runs). Each chosen job was scored by hand out of 5 (title 0 to 2, level 0 to 2, real employer 0 to 1), and a score of 4 or more counts as a good match.
 
-Each chosen job was scored by hand out of 5: title match (0 to 2), level match (0 to 2) and real employer (0 to 1). A score of 4 or more counts as a good match. Result: **13 of 20 good matches** (sequential 8 of 10, hierarchical 5 of 10). The scoring guide and every run's score are in `evaluation/`.
+**Result: 13 of 20 (65%)**, with the sequential crew at 8 of 10 and the hierarchical crew at 5 of 10.
 
-- **Reliability:** all 20 runs ended with an emailed result. Two resumes needed one rerun: one run stopped before searching, and one failed with a JSON parse error on the model's reply.
-- **Common failures:** staffing-agency or generic postings; level mismatches (searches for "junior" roles for candidates with 2 years of experience produced an internship pick); a listing whose company name did not fit the role; US-only postings for candidates in India.
-- **Summary accuracy:** in one run the summary step overstated a candidate's experience (3+ years against 2).
-- **Link check:** when opened later, some postings had been taken down and some aggregators needed a sign-in. Aggregator listings expire quickly.
-- **Limits:** scores come from titles, companies and level wording, not from reading every posting in full. Ten resumes is a small sample, so the results describe behaviour and are not an accuracy estimate.
+**Failed runs:** 2 of the 10 resumes needed one rerun. On one, a run stopped before searching, with no search and no email. On the other, a run failed with a JSON parse error on the model's reply. Both completed on the rerun, and the reruns are what the 13 of 20 reflects.
+
+The misses were mostly staffing-agency postings and level mismatches. Scores come from titles, companies and level wording, not from reading every posting, and the sample is small, so this describes behaviour and is not an accuracy estimate.
 
 ## 8. Limitations and next steps
 
-- **Guardrails for the sequential flow:** validate tool names, cap the number of search calls, and reject empty result sets, to capture what hierarchical mode did better.
+- **Guardrails for the sequential flow:** validate tool names, cap the number of search calls, and reject empty result sets.
 - **Quality filter:** screen out generic staffing-agency postings before selection.
 - **Level and location:** map years of experience to a level in the query, and pass the candidate's location, so searches stop defaulting to "junior" roles and US postings.
 - **Evaluation:** score matches against a labelled set of resumes and postings, so matching quality can be measured.
